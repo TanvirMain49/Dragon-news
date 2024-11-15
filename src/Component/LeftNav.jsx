@@ -15,7 +15,7 @@ const LeftNav = () => {
             <h2 className='pb-4 font-bold'>All category({categories.length})</h2>
                 <div className='flex flex-col gap-1 *:bg-base-100'>
                     {
-                        categories.map(category => <NavLink className='btn rounded-none' key={category.category_id}>{category.category_name}</NavLink>)
+                        categories.map(category => <NavLink to={`category/${category.category_id}`} className='btn rounded-none' key={category.category_id}>{category.category_name}</NavLink>)
                     }
                 </div>
         </div>
