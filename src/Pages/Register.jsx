@@ -4,11 +4,18 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
   const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
+
+   // State to manage form errors
   const [error, setError] = useState({});
+
+   // Hook to navigate programmatically after registration
   const navigate = useNavigate();
+
+  // Handle the form submission for registration
   const handleRegister = (e) => {
     e.preventDefault();
-    // get data
+
+  // Collect form data using FormData
     const form = new FormData(e.target);
     const name = form.get("name");
     if (name.length < 2) {
@@ -19,9 +26,7 @@ const Register = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(name, photoURL, email, password);
-
-    // create user
+   // Create a new user with email and password
     createUser(email, password)
       .then((result) => {
         const currentUser = result.user;

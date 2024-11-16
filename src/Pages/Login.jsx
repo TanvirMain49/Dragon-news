@@ -4,16 +4,22 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
   const { singInUser, setUser } = useContext(AuthContext);
+  // State to manage errors during login
   const [error, setError] = useState({});
+
+  // Hooks to access the current location and navigate between routes
   const location = useLocation();
   const navigator = useNavigate();
 
+   // Function to handle the login form submission
   const handleSingIn = (e) => {
     e.preventDefault();
+
+    // Get the email and password values from the form
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(password, email);
-    // signInUser
+    
+    // Attempt to sign in the user
     singInUser(email, password)
       .then((result) => {
         setUser(result.user);

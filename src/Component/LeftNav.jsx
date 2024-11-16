@@ -3,13 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 const LeftNav = () => {
     const [categories, setCategories] = useState([]);
-
+    // fetch data for categories tab-bar
     useEffect(()=>{
         fetch('https://openapi.programming-hero.com/api/news/categories')
         .then(res => res.json())
         .then(data => setCategories(data.data.news_category));
     }, [])
-    console.log(categories)
     return (
         <div>
             <h2 className='pb-4 font-bold'>All category({categories.length})</h2>
