@@ -1,24 +1,48 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import userPng from '../assets/user.png'
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import userPng from "../assets/user.png";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
-    return (
-        <div className='flex justify-between items-center py-8'>
-            <div className="logo"></div>
-            <div className="space-x-3">
-                <NavLink to="/">Home</NavLink>
-                <NavLink to='/about'>About</NavLink>
-                <NavLink to='/career'>Career</NavLink>
-            </div>
-            <div className="flex items-center gap-3">
-                <div>
-                    <img src={userPng} alt="" />
-                </div>
-                <button className='btn bg-black text-white rounded-none'>Log in</button>
-            </div>
+  const { user, logOut } = useContext(AuthContext);
+  return (
+    <div className="flex justify-between items-center">
+      <div className="logo font-bold text-blue-500 btn rounded-none">
+        {user?.email}
+      </div>
+      <div className="space-x-6">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/career">Career</NavLink>
+      </div>
+      <div className="flex items-center gap-3">
+        <div>
+            {
+                user?.email ? <div>
+                    <img className="w-12 mt-3 rounded-full border-2 p-2" src={user?.photoURL}/>
+                    <p className="text-sm font-semibold text-blue-500">{user.displayName}</p>
+                </div> : <img src={userPng} alt="" />
+            }
+          
         </div>
-    );
+        {user && user.email ? (
+          <button
+            onClick={logOut}
+            className="btn bg-black text-white rounded-none"
+          >
+            Log out
+          </button>
+        ) : (
+          <Link
+            to="/auth/login"
+            className="btn bg-black text-white rounded-none"
+          >
+            Log in
+          </Link>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;

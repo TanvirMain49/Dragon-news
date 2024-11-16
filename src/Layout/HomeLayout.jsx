@@ -18,7 +18,7 @@ const HomeLayout = () => {
             </header>
 
             {/* Navbar section */}
-            <nav className="w-10/12 mx-auto">
+            <nav className="w-10/12 mx-auto py-8">
                 <Navbar></Navbar>
             </nav>
 

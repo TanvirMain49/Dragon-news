@@ -1,5 +1,6 @@
 import { FaEye, FaShareAlt } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
 
 const NewsCart = (props = {}) => {
     const { news } = props || {};
@@ -32,7 +33,7 @@ const NewsCart = (props = {}) => {
                 className="mb-4 object-cover w-full p-4"
             />
 
-            <p className="text-gray-600 px-4 mb-3">{news.details.slice(0, 200)}...</p>
+            <p className="text-gray-600 px-4 mb-3">{news.details.slice(0, 200)}.....<NavLink className='text-red-500 font-semibold' to={`/news/${news._id}`}>see more</NavLink></p>
             {/* rating && view */}
             <div className="flex items-center px-4 pb-6">
                 {/* Render stars based on the rating */}
