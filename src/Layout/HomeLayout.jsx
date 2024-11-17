@@ -4,16 +4,17 @@ import LatestNews from '../Component/LatestNews';
 import Navbar from '../Component/Navbar';
 import LeftNav from '../Component/LeftNav';
 import RightNav from '../Component/RightNav';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
 const HomeLayout = () => {
+    const {data: latestNews} = useLoaderData();
     return (
         <div className='font-poppins'>
             {/* Header section */}
             <header>
                 <Header></Header>
                 <section className='w-11/12 mx-auto'>
-                    <LatestNews></LatestNews>
+                    <LatestNews latestNews={latestNews}></LatestNews>
                 </section>
             </header>
 

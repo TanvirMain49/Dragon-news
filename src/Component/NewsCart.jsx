@@ -2,6 +2,7 @@ import { FaEye, FaShareAlt } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 
+
 const NewsCart = (props = {}) => {
     const { news } = props || {};
     const stars = Array.from({ length: Math.floor(news.rating.number) });

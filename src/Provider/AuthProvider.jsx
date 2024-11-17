@@ -38,7 +38,7 @@ const AuthProvider = ({children}) => {
         logOut,
         singInUser,
         updateUserProfile,
-        loader
+        loader,
     }
 
     // Effect to monitor authentication state changes and set the user and loader state accordingly

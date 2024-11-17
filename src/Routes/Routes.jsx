@@ -11,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
+    loader: ()=> fetch('https://openapi.programming-hero.com/api/news/category/01'),
     children: [
       {
         path: "/",
