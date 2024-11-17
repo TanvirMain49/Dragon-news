@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../FireBase/FireBase.config";
 export const AuthContext = createContext()
 
@@ -37,6 +37,11 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, gitProvider)
     }
 
+    // function for forget Password
+    const forgetPass = (email) =>{
+        return sendPasswordResetEmail(auth, email);
+    }
+
      // Function to log out the current user
     const logOut = () =>{
         return signOut(auth)
@@ -52,7 +57,8 @@ const AuthProvider = ({children}) => {
         updateUserProfile,
         loader,
         singInGoogle,
-        signInGitHub
+        signInGitHub,
+        forgetPass
     }
 
     // Effect to monitor authentication state changes and set the user and loader state accordingly

@@ -1,15 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
-  const { singInUser, setUser } = useContext(AuthContext);
+  const { singInUser, forgetPass, setUser } = useContext(AuthContext);
   // State to manage errors during login
   const [error, setError] = useState({});
 
   // Hooks to access the current location and navigate between routes
   const location = useLocation();
   const navigator = useNavigate();
+
+  const emailRef = useRef();
+  const email = (emailRef?.current?.value);
+
 
    // Function to handle the login form submission
   const handleSingIn = (e) => {
@@ -29,6 +33,15 @@ const Login = () => {
         setError({ ...error, login: err.code });
       });
   };
+
+  const handleForgetPass = () =>{
+    forgetPass(email)
+    .then(()=>{}
+    )
+    .catch(error =>{
+
+    })
+  }
   return (
     <div className="min-h-screen flex justify-center items-center py-12">
       <div className="card bg-base-100 w-full max-w-lg shrink-0 p-10 rounded-none">
@@ -44,6 +57,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              ref={emailRef}
               placeholder="enter your email"
               className="input input-bordered"
               required
@@ -68,7 +82,7 @@ const Login = () => {
               )}
             </div>
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              <a onClick={handleForgetPass} href="#" className="label-text-alt link link-hover">
                 Forgot password?
               </a>
             </label>
