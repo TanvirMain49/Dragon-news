@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../FireBase/FireBase.config";
 export const AuthContext = createContext()
 
@@ -25,6 +25,12 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    // function to sing in with Google account
+    const provider = new GoogleAuthProvider();
+    const singInGoogle = () =>{
+        return signInWithPopup(auth, provider);
+    }
+
      // Function to log out the current user
     const logOut = () =>{
         return signOut(auth)
@@ -39,6 +45,7 @@ const AuthProvider = ({children}) => {
         singInUser,
         updateUserProfile,
         loader,
+        singInGoogle
     }
 
     // Effect to monitor authentication state changes and set the user and loader state accordingly
