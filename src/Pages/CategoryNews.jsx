@@ -4,7 +4,6 @@ import NewsCart from '../Component/NewsCart';
 
 const CategoryNews = () => {
     const {data: news} = useLoaderData();
-    console.log(news);
     return (
         <div>
             <h2 className='font-bold pb-4'>Dragon news</h2>
